@@ -1,0 +1,31 @@
+/* src/components/Key.css */
+.key {
+    border: 2px solid gray; /* Slightly darker border for better separation */
+    border-radius: 5px;
+    width: 70px; /* Increased size for better visibility */
+    height: 70px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: gray; /* Vibrant Green */
+    color: #FFFFFF; /* White Text */
+    transition: background-color 0.2s, transform 0.1s;
+    font-weight: bold;
+    font-size: 1.2em; /* Larger text for readability */
+    /*box-shadow: 0 4px 6px gray; !* Subtle shadow for depth *!*/
+}
+
+.key:hover {
+    background-color: #45A049; /* Slightly lighter green on hover */
+}
+
+.key:active {
+    transform: scale(0.98); /* Briefly shrink the key on click for feedback */
+}
+
+.key.active {
+    background-color: #388E3C; /* Darker Green when active */
+}
