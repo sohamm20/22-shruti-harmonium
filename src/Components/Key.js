@@ -7,6 +7,9 @@ const Key = ({ note, onPlay, onStop, isActive }) => {
         if (note.includes('high')) {
             return note.replace('_high', "'");
         }
+        if (note.includes('low')) {
+            return note.replace('_low', ",");
+        }
         return note;
     };
 

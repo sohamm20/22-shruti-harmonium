@@ -12,7 +12,7 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
         updateSetting(note, 'variation', value);
     };
 
-    const handleOctaveChange = (note, value) => {
+    const handleShrutiChange = (note, value) => {
         updateSetting(note, 'octave', value);
     };
 
@@ -31,9 +31,9 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
                 </button>
             </div>
             <div className="settings-container">
-                {Object.keys(settings).map((note) => (note !== 'Saa' && note !== 'Sa' && note !== 'Pa' && (
+                {Object.keys(settings).map((note) => (note !== 'Sa_high' && note !==     'Pa_high' && note !== 'Sa' && note !== 'Pa' && note !== 'Pa_low' && (
                     <div key={note} className="note-settings">
-                        <h3>{note.replace('_high', "'")}</h3>
+                        <h3>{note.replace('_high', "'") && (note.replace('_low', ','))}</h3>
                         <div className="option-group">
                             <label htmlFor={`${note}-variation`}>Variant:</label>
                             <select
@@ -50,7 +50,7 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
                             <select
                                 id={`${note}-octave`}
                                 value={settings[note].octave}
-                                onChange={(e) => handleOctaveChange(note, e.target.value)}
+                                onChange={(e) => handleShrutiChange(note, e.target.value)}
                             >
                                 <option value="low">Lower</option>
                                 <option value="high">Higher</option>
