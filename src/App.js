@@ -150,7 +150,21 @@ function App() {
                 updateSetting={updateSetting}
             />
             <div className="instructions">
-                Press keys <strong>A</strong> to <strong>K</strong> or click the keys to play notes.
+                C: Pa_low |
+                V: Dha_low |
+                B: Ni_low |
+                A: Sa |
+                S: Re |
+                D: Ga |
+                F: Ma |
+                G: Pa |
+                H: Dha |
+                J: Ni |
+                K: Sa_high |
+                L: Re_high |
+                Q: Ga_high |
+                W: Ma_high |
+                E: Pa_high |
             </div>
         </div>
     );

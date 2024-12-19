@@ -13,7 +13,7 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
     };
 
     const handleShrutiChange = (note, value) => {
-        updateSetting(note, 'octave', value);
+        updateSetting(note, 'shruti', value);
     };
 
     return (
@@ -46,10 +46,10 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
                             </select>
                         </div>
                         <div className="option-group">
-                            <label htmlFor={`${note}-octave`}>Shruti:</label>
+                            <label htmlFor={`${note}-shruti`}>Shruti:</label>
                             <select
-                                id={`${note}-octave`}
-                                value={settings[note].octave}
+                                id={`${note}-shruti`}
+                                value={settings[note].shruti}
                                 onChange={(e) => handleShrutiChange(note, e.target.value)}
                             >
                                 <option value="low">Lower</option>
