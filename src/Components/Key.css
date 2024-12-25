@@ -19,7 +19,7 @@
 }
 
 .key:hover {
-    background-color: #45A049; /* Slightly lighter green on hover */
+    background-color: #7393B3; /* Slightly lighter green on hover */
 }
 
 .key:active {
@@ -27,5 +27,5 @@
 }
 
 .key.active {
-    background-color: #388E3C; /* Darker Green when active */
+    background-color: #6082B6; /* Darker Green when active */
 }
