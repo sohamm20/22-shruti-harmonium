@@ -1,68 +1,152 @@
+/*!* src/App.css *!*/
+/*.App {*/
+/*  text-align: center;*/
+/*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+/*  padding: 20px;*/
+/*  position: relative;*/
+/*  background-color: #282c34; !* Dark background for contrast *!*/
+/*  min-height: 100vh;*/
+/*  color: #FFFFFF; !* White text *!*/
+/*}*/
+
+/*.keyboard {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  flex-wrap: wrap;*/
+/*  margin-top: 40px;*/
+/*}*/
+
+/*.instructions {*/
+/*  margin-top: 30px;*/
+/*  font-size: 1.1em;*/
+/*  color: #FFFFFF;*/
+/*  max-width: 600px;*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*  line-height: 1.5;*/
+/*}*/
+
+/*.settings-button {*/
+/*  position: fixed;*/
+/*  bottom: 30px;*/
+/*  right: 30px;*/
+/*  background-color: #FFEB3B; !* Bright yellow for visibility *!*/
+/*  border: none;*/
+/*  border-radius: 50%;*/
+/*  width: 60px;*/
+/*  height: 60px;*/
+/*  cursor: pointer;*/
+/*  box-shadow: 0 4px 6px rgba(0,0,0,0.3);*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  transition: background-color 0.3s, transform 0.2s;*/
+/*}*/
+
+/*.settings-button:hover {*/
+/*  background-color: #FDD835; !* Slightly darker yellow on hover *!*/
+/*  transform: scale(1.05);*/
+/*}*/
+
+/*@media (max-width: 600px) {*/
+/*  .settings-button {*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*  }*/
+
+/*  .key {*/
+/*    width: 60px;*/
+/*    height: 60px;*/
+/*    margin: 10px;*/
+/*    font-size: 1em;*/
+/*  }*/
+
+/*  .instructions {*/
+/*    font-size: 1em;*/
+/*    padding: 0 20px;*/
+/*  }*/
+/*}*/
+
 /* src/App.css */
 .App {
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
   position: relative;
-  background-color: #282c34; /* Dark background for contrast */
+  background-color: #1e1e2f; /* Slightly softer dark background for better contrast */
   min-height: 100vh;
-  color: #FFFFFF; /* White text */
+  color: #f8f9fa; /* Softer white for text readability */
 }
 
 .keyboard {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 15px; /* Adds spacing between keys */
   margin-top: 40px;
 }
 
 .instructions {
   margin-top: 30px;
-  font-size: 1.1em;
-  color: #FFFFFF;
+  font-size: 1.1rem;
+  color: #dcdde1; /* Slightly muted color for secondary content */
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
+  margin: 30px auto;
+  line-height: 1.6;
+  padding: 0 10px;
+  text-align: justify;
 }
 
 .settings-button {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #FFEB3B; /* Bright yellow for visibility */
+  bottom: 20px;
+  right: 20px;
+  background-color: #FFC107; /* More accessible yellow */
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .settings-button:hover {
-  background-color: #FDD835; /* Slightly darker yellow on hover */
-  transform: scale(1.05);
+  background-color: #FFB300; /* Slightly darker yellow on hover */
+  transform: scale(1.1);
 }
 
-@media (max-width: 600px) {
-  .settings-button {
-    width: 50px;
-    height: 50px;
-  }
+.settings-button:focus {
+  outline: 3px solid #FFC107;
+  outline-offset: 3px;
+}
 
-  .key {
-    width: 60px;
-    height: 60px;
-    margin: 10px;
-    font-size: 1em;
+@media (max-width: 768px) {
+  .keyboard {
+    gap: 10px;
   }
 
   .instructions {
-    font-size: 1em;
-    padding: 0 20px;
+    font-size: 1rem;
+  }
+
+  .settings-button {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .instructions {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+
+  .settings-button {
+    width: 50px;
+    height: 50px;
   }
 }

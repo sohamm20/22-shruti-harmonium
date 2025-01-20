@@ -29,7 +29,7 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
                 </button>
             </div>
             <div className="settings-container">
-                {Object.keys(settings).map((note) => ( note !== "Pa" && note !== "Sa" &&
+                {Object.keys(settings).map((note) => ( note != "Pa" && note != "Sa" &&
                     <div key={note} className="note-settings">
                         <h3>{note}</h3>
                         <div className="option-group">

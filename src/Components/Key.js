@@ -1,14 +1,13 @@
 import React from 'react';
 import './Key.css';
 
-const Key = ({ note, onPlay, onStop, isActive }) => {
+const Key = ({ note, octave, onPlay, onStop, isActive }) => {
     const displayNote = () => {
-        // Customize the display based on note variations
-        if (note.includes('high')) {
-            return note.replace('_high', "'");
+        if (octave === 'high') {
+            return `${note}'`;
         }
-        if (note.includes('low')) {
-            return note.replace('_low', ",");
+        if (octave === 'low') {
+            return `${note},`;
         }
         return note;
     };
@@ -18,8 +17,8 @@ const Key = ({ note, onPlay, onStop, isActive }) => {
             className={`key ${isActive ? 'active' : ''}`}
             onMouseDown={onPlay}
             onMouseUp={onStop}
-            onMouseLeave={onStop} // Ensures sound stops if the mouse leaves the key while pressed
-            onTouchStart={onPlay} // For touch devices
+            onMouseLeave={onStop}
+            onTouchStart={onPlay}
             onTouchEnd={onStop}
         >
             {displayNote()}
