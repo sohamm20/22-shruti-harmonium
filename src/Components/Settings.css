@@ -1,18 +1,18 @@
-
-
 .Modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ffffff;
-    padding: 30px 50px;
+    padding: 30px 40px;
     width: 90%;
-    max-width: 800px;
+    max-width: 600px; /* Reduced max width for better scaling on larger screens */
     border-radius: 10px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.3s ease-in-out;
     color: #333333;
+    overflow-y: auto;
+    max-height: 90vh; /* Prevents modal from exceeding viewport height */
 }
 
 .Overlay {
@@ -28,6 +28,7 @@
     animation: fadeOverlay 0.3s ease-in-out;
 }
 
+/* Modal Header */
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -38,14 +39,14 @@
 
 .modal-header h2 {
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: #2c3e50;
 }
 
 .close-button {
     background: none;
     border: none;
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #7f8c8d;
     cursor: pointer;
     transition: color 0.2s;
@@ -55,10 +56,11 @@
     color: #e74c3c;
 }
 
+/* Settings Grid */
 .settings-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
     margin-top: 20px;
 }
 
@@ -79,9 +81,10 @@
 .note-settings h3 {
     margin-top: 0;
     color: #34495e;
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
+/* Options */
 .option-group {
     margin-top: 15px;
     display: flex;
@@ -108,20 +111,7 @@
     outline: none;
 }
 
-@media (max-width: 600px) {
-    .Modal {
-        padding: 20px 30px;
-    }
-
-    .modal-header h2 {
-        font-size: 1.5em;
-    }
-
-    .close-button {
-        font-size: 1.2em;
-    }
-}
-
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translate(-50%, -60%); }
     to { opacity: 1; transform: translate(-50%, -50%); }
