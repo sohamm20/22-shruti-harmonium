@@ -51,7 +51,7 @@
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  background: url('../public/wood.jpeg') no-repeat center/cover;
+  background: rgba(255, 255, 255, 0.5);
   border: none;
   border-radius: 50%;
   width: 4rem;
