@@ -1,152 +1,136 @@
-/*!* src/App.css *!*/
-/*.App {*/
-/*  text-align: center;*/
-/*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-/*  padding: 20px;*/
-/*  position: relative;*/
-/*  background-color: #282c34; !* Dark background for contrast *!*/
-/*  min-height: 100vh;*/
-/*  color: #FFFFFF; !* White text *!*/
-/*}*/
 
-/*.keyboard {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  flex-wrap: wrap;*/
-/*  margin-top: 40px;*/
-/*}*/
+:root {
+  --primary-bg: #1e1e2f;
+  --secondary-bg: #2d2d44;
+  --accent-yellow: #FFC107;
+  --text-primary: #f8f9fa;
+  --text-secondary: #dcdde1;
+  --key-size: 80px;
+  --key-gap: 15px;
+  --transition-timing: 0.2s ease;
+}
 
-/*.instructions {*/
-/*  margin-top: 30px;*/
-/*  font-size: 1.1em;*/
-/*  color: #FFFFFF;*/
-/*  max-width: 600px;*/
-/*  margin-left: auto;*/
-/*  margin-right: auto;*/
-/*  line-height: 1.5;*/
-/*}*/
-
-/*.settings-button {*/
-/*  position: fixed;*/
-/*  bottom: 30px;*/
-/*  right: 30px;*/
-/*  background-color: #FFEB3B; !* Bright yellow for visibility *!*/
-/*  border: none;*/
-/*  border-radius: 50%;*/
-/*  width: 60px;*/
-/*  height: 60px;*/
-/*  cursor: pointer;*/
-/*  box-shadow: 0 4px 6px rgba(0,0,0,0.3);*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  transition: background-color 0.3s, transform 0.2s;*/
-/*}*/
-
-/*.settings-button:hover {*/
-/*  background-color: #FDD835; !* Slightly darker yellow on hover *!*/
-/*  transform: scale(1.05);*/
-/*}*/
-
-/*@media (max-width: 600px) {*/
-/*  .settings-button {*/
-/*    width: 50px;*/
-/*    height: 50px;*/
-/*  }*/
-
-/*  .key {*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    margin: 10px;*/
-/*    font-size: 1em;*/
-/*  }*/
-
-/*  .instructions {*/
-/*    font-size: 1em;*/
-/*    padding: 0 20px;*/
-/*  }*/
-/*}*/
-
-/* src/App.css */
 .App {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 20px;
-  position: relative;
-  background-color: #1e1e2f; /* Slightly softer dark background for better contrast */
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  padding: 2rem 1rem;
   min-height: 100vh;
-  color: #f8f9fa; /* Softer white for text readability */
+  background: linear-gradient(160deg, var(--primary-bg) 0%, #25253c 100%);
+  color: var(--text-primary);
+  position: relative;
 }
 
 .keyboard {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px; /* Adds spacing between keys */
-  margin-top: 40px;
+  gap: var(--key-gap);
+  margin: 3rem auto;
+  max-width: fit-content;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .instructions {
-  margin-top: 30px;
   font-size: 1.1rem;
-  color: #dcdde1; /* Slightly muted color for secondary content */
-  max-width: 600px;
-  margin: 30px auto;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 2rem auto;
   line-height: 1.6;
-  padding: 0 10px;
-  text-align: justify;
+  padding: 1.5rem;
+  background: var(--secondary-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .settings-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #FFC107; /* More accessible yellow */
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--accent-yellow);
   border: none;
   border-radius: 50%;
-  width: 65px;
-  height: 65px;
+  width: 4rem;
+  height: 4rem;
   cursor: pointer;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  display: grid;
+  place-items: center;
+  transition: var(--transition-timing);
+  z-index: 100;
 }
 
 .settings-button:hover {
-  background-color: #FFB300; /* Slightly darker yellow on hover */
-  transform: scale(1.1);
+  background: #FFB300;
+  transform: rotate(90deg) scale(1.1);
 }
 
-.settings-button:focus {
-  outline: 3px solid #FFC107;
+.settings-button:focus-visible {
+  outline: 3px solid var(--accent-yellow);
   outline-offset: 3px;
 }
 
+/* Key hover/active states */
+@media (hover: hover) {
+  .key:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.key:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+  :root {
+    --key-size: 65px;
+    --key-gap: 10px;
+  }
+
+  .App {
+    padding: 1.5rem 0.5rem;
+  }
+
   .keyboard {
-    gap: 10px;
+    margin: 2rem auto;
+    padding: 0.5rem;
   }
 
   .instructions {
     font-size: 1rem;
-  }
-
-  .settings-button {
-    width: 55px;
-    height: 55px;
+    margin: 1.5rem auto;
+    padding: 1rem;
   }
 }
 
 @media (max-width: 480px) {
+  :root {
+    --key-size: 55px;
+  }
+
   .instructions {
     font-size: 0.9rem;
-    padding: 0 15px;
+    padding: 0.8rem;
   }
 
   .settings-button {
-    width: 50px;
-    height: 50px;
+    width: 3.5rem;
+    height: 3.5rem;
   }
+}
+
+/* Animation for active keys */
+@keyframes key-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.key.active {
+  animation: key-press 0.3s ease;
+  filter: brightness(1.2);
 }
