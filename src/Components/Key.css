@@ -16,6 +16,7 @@
     font-weight: bold;
     font-size: 1.2em; /* Larger text for readability */
     /*box-shadow: 0 4px 6px gray; !* Subtle shadow for depth *!*/
+    background-image: url('../../public/wood.jpeg');
 }
 
 .key:hover {
