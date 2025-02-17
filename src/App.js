@@ -158,7 +158,7 @@ function App() {
             const key = `${droneNote}_mid`;
             if (audioBuffers[key]) {
                 const gainNode = audioContextRef.current.createGain();
-                gainNode.gain.value = 0.33; // set volume to 66%
+                gainNode.gain.value = 0.25; // set volume to 66%
                 const source = audioContextRef.current.createBufferSource();
                 source.buffer = audioBuffers[key];
                 source.loop = true;
