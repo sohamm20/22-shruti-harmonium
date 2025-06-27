@@ -3,7 +3,6 @@ import Key from './Components/Key';
 import Settings from './Components/Settings';
 import { FaCog } from 'react-icons/fa';
 import './App.css';
-// ...existing code...
 
 const initialSettings = {
     Sa: { variation: 'komal', shruti: 'low' },
@@ -33,7 +32,6 @@ const keyNoteMap = {
 };
 
 function App() {
-    // ...existing state...
     const [audioBuffers, setAudioBuffers] = useState({});
     const [activeSources, setActiveSources] = useState(new Map());
     const [settings, setSettings] = useState(initialSettings);
@@ -174,58 +172,78 @@ function App() {
 
     return (
         <div className="App">
-            <h1>22 Shruti Harmonium</h1>
-            <div className="keyboard">
-                {Object.keys(memoizedKeyNoteMap).map((key) => {
-                    const { note, octave } = memoizedKeyNoteMap[key];
-                    return (
-                        <Key
-                            key={key}
-                            note={note}
-                            octave={octave}
-                            isActive={activeSources.has(`${note}_${octave}`)}
-                            onPlay={() => playNote(note, octave)}
-                            onStop={() => stopNote(note, octave)}
-                        />
-                    );
-                })}
+            <div className="app-header">
+                <h1 className="app-title">22 Shruti Harmonium</h1>
+                <p className="app-subtitle">Experience the authentic microtonal harmonium</p>
             </div>
+
+            <div className="keyboard-container">
+                <div className="keyboard">
+                    {Object.keys(memoizedKeyNoteMap).map((key) => {
+                        const { note, octave } = memoizedKeyNoteMap[key];
+                        return (
+                            <Key
+                                key={key}
+                                note={note}
+                                octave={octave}
+                                isActive={activeSources.has(`${note}_${octave}`)}
+                                onPlay={() => playNote(note, octave)}
+                                onStop={() => stopNote(note, octave)}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
+
+            <div className="controls-section">
+                <div className="drone-controller">
+                    <h2 className="drone-title">Drone Control</h2>
+                    <div className="drone-controls">
+                        <select value={droneNote} onChange={e => setDroneNote(e.target.value)}>
+                            <option value="Sa">Sa</option>
+                            <option value="Re">Re</option>
+                            <option value="Ga">Ga</option>
+                            <option value="Ma">Ma</option>
+                            <option value="Pa">Pa</option>
+                            <option value="Dha">Dha</option>
+                            <option value="Ni">Ni</option>
+                        </select>
+                        <button className="drone-button" onClick={toggleDrone}>
+                            {droneSource ? "Stop Drone" : "Start Drone"}
+                        </button>
+                    </div>
+                </div>
+
+                <div className="instructions">
+                    <h2>Keyboard Mapping</h2>
+                    <div className="key-mappings">
+                        <div className="key-mapping-group">
+                            <h3>Lower Octave</h3>
+                            <div>Z → Pa, X → Dha, C → Ni</div>
+                        </div>
+                        <div className="key-mapping-group">
+                            <h3>Middle Octave</h3>
+                            <div>A → Sa, S → Re, D → Ga, F → Ma</div>
+                            <div>G → Pa, H → Dha, J → Ni</div>
+                        </div>
+                        <div className="key-mapping-group">
+                            <h3>Higher Octave</h3>
+                            <div>K → Sa, L → Re, ; → Ga, ' → Ma</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button className="settings-button" onClick={() => setIsSettingsOpen(true)}>
                 <FaCog size={24} />
             </button>
+
             <Settings
                 isOpen={isSettingsOpen}
                 onRequestClose={() => setIsSettingsOpen(false)}
                 settings={settings}
                 updateSetting={updateSetting}
             />
-            {/* Drone Controller */}
-            <div className="drone-controller" style={{marginTop: '20px'}}>
-                <h2>Drone Control</h2>
-                <select value={droneNote} onChange={e => setDroneNote(e.target.value)}>
-                    <option value="Sa">Sa</option>
-                    <option value="Re">Re</option>
-                    <option value="Ga">Ga</option>
-                    <option value="Ma">Ma</option>
-                    <option value="Pa">Pa</option>
-                    <option value="Dha">Dha</option>
-                    <option value="Ni">Ni</option>
-                </select>
-                <button onClick={toggleDrone} style={{marginLeft: '10px'}}>
-                    {droneSource ? "Stop Drone" : "Start Drone"}
-                </button>
-            </div>
-            <br/>
-            <br/>
-            <h2>Key to Notes Map</h2>
-            <div className="instructions">
-                (Z : Pa Low) (X : Dha Low) (C : Ni Low)
-                (A : Sa Mid) (S : Re Mid) (D : Ga Mid)
-                (F : Ma Mid) (G : Pa Mid) (H : Dha Mid)
-                (J : Ni Mid) (K : Sa High) (L : Re High)
-                (Q : Ga High) (W : Ma High) (E : Pa High)
-                (R : Dha High) (T : Ni High)
-            </div>
         </div>
     );
 }

@@ -1,167 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-bg: #1e1e2f;
-  --secondary-bg: #2d2d44;
-  --accent-yellow: #FFC107;
-  --text-primary: #f8f9fa;
-  --text-secondary: #dcdde1;
-  --key-size: 80px;
-  --key-gap: 15px;
-  --transition-timing: 0.2s ease;
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-bg: #0f0f23;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(255, 255, 255, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #b8c5d6;
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.2);
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.drone-controller {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.drone-controller select,
-.drone-controller button {
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.drone-controller button {
-  cursor: pointer;
-  background-color: #007acc;
-  color: #fff;
-  border: none;
-}
-
-.drone-controller button:hover {
-  background-color: #005fa3;
+* {
+  box-sizing: border-box;
 }
 
 .App {
-  text-align: center;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  padding: 2rem 1rem;
   min-height: 100vh;
-  background: linear-gradient(160deg, var(--primary-bg) 0%, #25253c 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--dark-bg);
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
   color: var(--text-primary);
+  padding: 2rem 1rem;
   position: relative;
-  background: url('../public/wood-background.jpeg');
+  overflow-x: hidden;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+  background-size: 100px 100px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 4px 20px rgba(120, 119, 198, 0.3);
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+}
+
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem auto;
+  max-width: 1200px;
 }
 
 .keyboard {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--key-gap);
-  margin: 3rem auto;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
   max-width: fit-content;
-  padding: 1rem;
-  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard:hover {
+  background: var(--card-hover);
+  transform: translateY(-2px);
+}
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin: 3rem auto;
+  max-width: 800px;
+}
+
+.drone-controller {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: var(--transition);
+  min-width: 300px;
+}
+
+.drone-controller:hover {
+  background: var(--card-hover);
+  transform: translateY(-2px);
+}
+
+.drone-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.drone-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.drone-controller select {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.drone-controller select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.5);
+}
+
+.drone-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent-gradient);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+}
+
+.drone-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.drone-button:active {
+  transform: translateY(0);
 }
 
 .instructions {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 800px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
   margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.instructions:hover {
+  background: var(--card-hover);
+  transform: translateY(-2px);
+}
+
+.instructions h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  background: var(--secondary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.key-mappings {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
   line-height: 1.6;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.5); /* White with transparency */
-  color : black;
+  color: var(--text-secondary);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.key-mapping-group {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  min-width: 150px;
+}
+
+.key-mapping-group h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .settings-button {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  background: rgba(255, 255, 255, 0.5);
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
+  background: var(--primary-gradient);
+  color: white;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  display: grid;
-  place-items: center;
-  transition: var(--transition-timing);
-  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  z-index: 1000;
+  backdrop-filter: blur(20px);
 }
 
 .settings-button:hover {
-  transform: rotate(90deg) scale(1.1);
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
 }
 
-.settings-button:focus-visible {
-  outline: 3px solid var(--accent-yellow);
-  outline-offset: 3px;
+.settings-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5), var(--shadow-lg);
 }
 
-/* Key hover/active states */
-@media (hover: hover) {
-  .key:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.key:active {
-  transform: translateY(1px) scale(0.98);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  :root {
-    --key-size: 65px;
-    --key-gap: 10px;
-  }
-
   .App {
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.5rem;
   }
-
+  
   .keyboard {
-    margin: 2rem auto;
-    padding: 0.5rem;
+    gap: 0.75rem;
+    padding: 1.5rem;
   }
-
-  .instructions {
-    font-size: 1rem;
-    margin: 1.5rem auto;
-    padding: 1rem;
+  
+  .keyboard-row {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  
+  .controls-section {
+    margin: 2rem auto;
+  }
+  
+  .drone-controller {
+    min-width: auto;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .drone-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .drone-controller select,
+  .drone-button {
+    width: 100%;
+  }
+  
+  .key-mappings {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+  .settings-button {
+    width: 50px;
+    height: 50px;
+    bottom: 1rem;
+    right: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  :root {
-    --key-size: 55px;
+  .keyboard {
+    gap: 0.5rem;
   }
-
+  
   .instructions {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-  .settings-button {
-    width: 3.5rem;
-    height: 3.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem auto;
   }
 }
 
-/* Animation for active keys */
-@keyframes key-press {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.95); }
-  100% { transform: scale(1); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.key.active {
-  animation: key-press 0.3s ease;
-  filter: brightness(1.2);
+.floating {
+  animation: float 3s ease-in-out infinite;
 }
