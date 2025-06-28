@@ -115,86 +115,6 @@
   max-width: 800px;
 }
 
-.drone-controller {
-  background: var(--card-bg);
-  backdrop-filter: blur(20px);
-  padding: 1.5rem 2rem;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  transition: var(--transition);
-  min-width: 300px;
-}
-
-.drone-controller:hover {
-  background: var(--card-hover);
-  transform: translateY(-2px);
-}
-
-.drone-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.drone-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.drone-controller select {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: var(--transition);
-  font-family: inherit;
-}
-
-.drone-controller select:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.5);
-}
-
-.drone-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent-gradient);
-  color: white;
-  cursor: pointer;
-  transition: var(--transition);
-  font-family: inherit;
-  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-}
-
-.drone-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
-}
-
-.drone-button:active {
-  transform: translateY(0);
-}
-
 .instructions {
   background: var(--card-bg);
   backdrop-filter: blur(20px);
@@ -296,22 +216,6 @@
   
   .controls-section {
     margin: 2rem auto;
-  }
-  
-  .drone-controller {
-    min-width: auto;
-    width: 100%;
-    max-width: 350px;
-  }
-  
-  .drone-controls {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .drone-controller select,
-  .drone-button {
-    width: 100%;
   }
   
   .key-mappings {

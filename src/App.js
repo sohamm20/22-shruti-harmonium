@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import Key from './Components/Key';
 import Settings from './Components/Settings';
+import Tanpura from './Components/Tanpura';
 import { FaCog } from 'react-icons/fa';
 import './App.css';
 
@@ -37,11 +38,6 @@ function App() {
     const [settings, setSettings] = useState(initialSettings);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const audioContextRef = useRef(null);
-
-    // New state for drone functionality
-    const [droneNote, setDroneNote] = useState("Sa");
-    const [droneSource, setDroneSource] = useState(null);
-
     const memoizedKeyNoteMap = useMemo(() => keyNoteMap, []);
 
     // Preload audio buffers
@@ -147,29 +143,6 @@ function App() {
         }));
     }, []);
 
-    // Drone functions
-    const toggleDrone = () => {
-        if (droneSource) {
-            droneSource.stop();
-            setDroneSource(null);
-        } else {
-            const key = `${droneNote}_mid`;
-            if (audioBuffers[key]) {
-                const gainNode = audioContextRef.current.createGain();
-                gainNode.gain.value = 0.25; // set volume to 66%
-                const source = audioContextRef.current.createBufferSource();
-                source.buffer = audioBuffers[key];
-                source.loop = true;
-                source.connect(gainNode);
-                gainNode.connect(audioContextRef.current.destination);
-                source.start(0);
-                setDroneSource(source);
-            } else {
-                console.error("Audio buffer not loaded for drone key:", key);
-            }
-        }
-    };
-
     return (
         <div className="App">
             <div className="app-header">
@@ -196,23 +169,8 @@ function App() {
             </div>
 
             <div className="controls-section">
-                <div className="drone-controller">
-                    <h2 className="drone-title">Drone Control</h2>
-                    <div className="drone-controls">
-                        <select value={droneNote} onChange={e => setDroneNote(e.target.value)}>
-                            <option value="Sa">Sa</option>
-                            <option value="Re">Re</option>
-                            <option value="Ga">Ga</option>
-                            <option value="Ma">Ma</option>
-                            <option value="Pa">Pa</option>
-                            <option value="Dha">Dha</option>
-                            <option value="Ni">Ni</option>
-                        </select>
-                        <button className="drone-button" onClick={toggleDrone}>
-                            {droneSource ? "Stop Drone" : "Start Drone"}
-                        </button>
-                    </div>
-                </div>
+
+                <Tanpura />
 
                 <div className="instructions">
                     <h2>Keyboard Mapping</h2>
