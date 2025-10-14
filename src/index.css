@@ -1,6 +1,63 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #282c34;
-  color: white;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply m-0 bg-background font-sans text-slate-100;
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-3xl border border-white/10 bg-surface p-7 shadow-aurora backdrop-blur-2xl transition-transform duration-200 ease-in-out hover:-translate-y-0.5 hover:bg-surfaceHover;
+  }
+
+  .panel-heading {
+    @apply mb-6 flex flex-col gap-2;
+  }
+
+  .panel-heading h2 {
+    @apply m-0 text-xl font-semibold;
+  }
+
+  .panel-heading p {
+    @apply m-0 text-sm leading-relaxed text-slate-400;
+  }
+}
+
+@layer utilities {
+  .badge-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-badge px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-indigo-200;
+  }
+}
+
+input[type="range"] {
+  @apply h-1.5 w-full appearance-none rounded-full bg-white/10 accent-purple-400;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply h-4 w-4 cursor-pointer appearance-none rounded-full bg-gradient-to-br from-fuchsia-300 to-rose-400 shadow-[0_4px_12px_rgba(242,164,246,0.35)] transition-transform duration-200;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  @apply scale-110;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply h-4 w-4 cursor-pointer rounded-full border-0 bg-gradient-to-br from-fuchsia-300 to-rose-400 shadow-[0_4px_12px_rgba(242,164,246,0.35)] transition-transform duration-200;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  @apply scale-110;
+}
+
+input[type="range"]::-moz-range-track {
+  @apply h-1.5 rounded-full border-0 bg-white/10;
 }
