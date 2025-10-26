@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { FaTimes } from 'react-icons/fa';
 
@@ -75,6 +76,18 @@ const Settings = ({ isOpen, onRequestClose, settings, updateSetting }) => {
             </div>
         </Modal>
     );
+};
+
+Settings.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
+    settings: PropTypes.objectOf(
+        PropTypes.shape({
+            variation: PropTypes.oneOf(['komal', 'teevra']).isRequired,
+            shruti: PropTypes.oneOf(['low', 'high']).isRequired,
+        })
+    ).isRequired,
+    updateSetting: PropTypes.func.isRequired,
 };
 
 export default Settings;

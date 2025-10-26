@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Tanpura = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useLocalStorage('tanpura-volume', 30);
   const audioRef = useRef(null);
 
   const toggleTanpura = () => {
@@ -23,10 +25,22 @@ const Tanpura = () => {
   };
 
   const handleVolumeChange = (e) => {
+    const newVolume = e.target.value;
+    setVolume(newVolume);
     if (audioRef.current) {
-      audioRef.current.volume = e.target.value / 100;
+      audioRef.current.volume = newVolume / 100;
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <div className="surface-card flex flex-col gap-5">
@@ -47,7 +61,7 @@ const Tanpura = () => {
             type="range"
             min="0"
             max="100"
-            defaultValue="30"
+            value={volume}
             onChange={handleVolumeChange}
             className="h-1.5 w-full appearance-none rounded-full bg-white/10 accent-purple-400"
           />

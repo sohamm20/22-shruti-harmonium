@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Key = ({ note, octave, onPlay, onStop, isActive }) => {
     const displayNote = () => {
@@ -29,13 +30,34 @@ const Key = ({ note, octave, onPlay, onStop, isActive }) => {
             onMouseLeave={onStop}
             onTouchStart={onPlay}
             onTouchEnd={onStop}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onPlay();
+                }
+            }}
+            onKeyUp={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onStop();
+                }
+            }}
             tabIndex={0}
             role="button"
             aria-label={`Play ${note} ${octave} octave`}
+            aria-pressed={isActive}
         >
             {displayNote()}
         </div>
     );
 };
 
-export default Key;
+Key.propTypes = {
+    note: PropTypes.string.isRequired,
+    octave: PropTypes.oneOf(['low', 'mid', 'high']).isRequired,
+    onPlay: PropTypes.func.isRequired,
+    onStop: PropTypes.func.isRequired,
+    isActive: PropTypes.bool.isRequired,
+};
+
+export default React.memo(Key);
